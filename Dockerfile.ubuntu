@@ -1,0 +1,36 @@
+# Based on https://community.endlessos.com/t/toolbox-defaults-to-fedora-but-endless-is-based-on-ubuntu-debian/11355/14
+
+FROM docker.io/library/ubuntu:20.04
+
+LABEL com.github.containers.toolbox="true" \
+      com.github.debarshiray.toolbox="true"
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && \
+    apt full-upgrade -y && \
+    apt install -y \
+        sudo \
+        libcap2-bin \
+    && apt clean
+
+RUN sed -i -e 's/ ALL$/ NOPASSWD:ALL/' /etc/sudoers
+
+RUN touch /etc/localtime
+
+# Custom env packages
+RUN apt update && apt install -y \
+    zsh \
+    tmux \
+    tree \
+    fd-find \
+    wget \
+    git \
+    vim \
+    icdiff \
+    curl \
+    htop \
+    dnsutils \
+    ranger
+
+CMD /bin/sh
