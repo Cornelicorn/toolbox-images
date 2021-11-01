@@ -1,0 +1,32 @@
+# Based on https://community.endlessos.com/t/toolbox-defaults-to-fedora-but-endless-is-based-on-ubuntu-debian/11355/14
+
+FROM docker.io/library/archlinux:base-devel
+
+LABEL com.github.containers.toolbox="true" \
+      com.github.debarshiray.toolbox="true"
+
+RUN pacman --noconfirm -Syyu && \
+    pacman --noconfirm -S --needed \
+        sudo \
+        libcap \
+    && pacman --noconfirm -Sc
+
+RUN sed -i -e 's/ ALL$/ NOPASSWD:ALL/' /etc/sudoers
+
+RUN touch /etc/localtime
+
+# Custom env packages
+RUN pacman --noconfirm -Syy --needed \
+    zsh \
+    tmux \
+    tree \
+    fd \
+    wget \
+    git \
+    vim \
+    curl \
+    htop \
+    ranger \
+    && pacman --noconfirm -Sc
+
+CMD /bin/sh
