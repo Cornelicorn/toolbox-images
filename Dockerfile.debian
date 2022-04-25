@@ -2,6 +2,8 @@
 
 FROM docker.io/library/debian:11
 
+LABEL maintainer="Cornelius Hoffmann <coding@hoffmn.de>"
+
 LABEL com.github.containers.toolbox="true" \
       com.github.debarshiray.toolbox="true"
 
