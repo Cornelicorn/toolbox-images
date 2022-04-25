@@ -1,6 +1,6 @@
 # Based on https://community.endlessos.com/t/toolbox-defaults-to-fedora-but-endless-is-based-on-ubuntu-debian/11355/14
 
-FROM docker.io/library/ubuntu:20.04
+FROM docker.io/library/ubuntu:22.04
 
 LABEL com.github.containers.toolbox="true" \
       com.github.debarshiray.toolbox="true"
